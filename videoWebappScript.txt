@@ -1,0 +1,17 @@
+mongo
+
+use users
+
+db.createCollection("userVideos")
+
+db.userVideos.createIndex("videoId", { unique: true });
+
+db.userVideos.insert({
+  "videoId": "v001",
+  "sourceURL": "https://s3.ap-south-1.amazonaws.com/top100videos/v001.mp4",
+  "thumbnailURL": "https://s3.ap-south-1.amazonaws.com/top100videos/thumbnailv001.png",
+  "title": "title 001",
+  "description": "description v001",
+  "ownerUserId": "admin",
+  "isPublic": true
+})
