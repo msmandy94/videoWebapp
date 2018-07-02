@@ -68,4 +68,5 @@ public class VideoBean {
     public void setPublic(boolean aPublic) {
         isPublic = aPublic;
     }
+
 }

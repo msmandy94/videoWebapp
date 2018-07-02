@@ -36,33 +36,33 @@ public class VideosServiceImpl implements VideosService {
     }
 
     private ArrayList<VideoBean> documentToVideoBeenAdaptor(ArrayList<Document> videosDocument) {
-        if (videosDocument== null || videosDocument.isEmpty()){
+        if (videosDocument == null || videosDocument.isEmpty()) {
             //todo: generate appropriate exception and error message
             return null;
         }
         ArrayList<VideoBean> videos = new ArrayList<VideoBean>();
-        for(Document doc: videosDocument){
+        for (Document doc : videosDocument) {
             VideoBean video = new VideoBean();
-            if (doc.containsKey("videoId")){
+            if (doc.containsKey("videoId")) {
                 video.setVideoId((String) doc.get("videoId"));
             }
-            if (doc.containsKey("sourceURL")){
+            if (doc.containsKey("sourceURL")) {
                 video.setSourceURL((String) doc.get("sourceURL"));
             }
-            if (doc.containsKey("thumbnailURL")){
+            if (doc.containsKey("thumbnailURL")) {
                 video.setThumbnailURL((String) doc.get("thumbnailURL"));
             }
-            if (doc.containsKey("title")){
+            if (doc.containsKey("title")) {
                 video.setTitle((String) doc.get("title"));
             }
-            if (doc.containsKey("description")){
+            if (doc.containsKey("description")) {
                 video.setDescription((String) doc.get("description"));
             }
-            if (doc.containsKey("ownerUserId")){
+            if (doc.containsKey("ownerUserId")) {
                 video.setOwnerUserId((String) doc.get("ownerUserId"));
             }
-            if (doc.containsKey("isPublic")){
-                video.setPublic((Boolean) doc.get("isPublic"));
+            if (doc.containsKey("isPublic")) {
+                video.setPublic(doc.getBoolean("isPublic", true));
             }
             videos.add(video);
         }
