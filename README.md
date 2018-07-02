@@ -1,10 +1,12 @@
-# LoginLogoutAudit
+# Video Streaming WebApp
 
 * Login Page: 
 
-login page = http://localhost:8080/
-home page = http://localhost:8080/LoginServlet
-On AWS Login Page = http://mandy.us-east-2.elasticbeanstalk.com/
+login page = http://localhost:8080/login.jsp
+home page = http://localhost:8080/home.jsp
+On AWS Login Page = 
+
+Tech Used: Java & jsp
  
  * MongoDB Properties:
 
@@ -39,21 +41,39 @@ db.createCollection("userBeen")
 
 db.userBeen.createIndex("userId", { unique: true });
 
-db.userBeen.insert({"userId":"admin","password":"admin"})
+db.userBeen.insert({"userId":"admin","password":"admin", "userType":"CONTRIBUTOR"})
 
-db.userBeen.insert({"userId":"user1","password":"user1"})
+db.userBeen.insert({"userId":"user1","password":"user1", "userType":"VIEWER"})
 
-db.userBeen.insert({"userId":"user2","password":"user2"})
+db.userBeen.insert({"userId":"user2","password":"user2", "userType":"VIEWER"})
 
-db.userBeen.insert({"userId":"user3","password":"user3"})
+db.userBeen.insert({"userId":"user3","password":"user3", "userType":"VIEWER"})
 
-db.userBeen.insert({"userId":"user4","password":"user4"})
+db.userBeen.insert({"userId":"user4","password":"user4", "userType":"VIEWER"})
 
-db.userBeen.insert({"userId":"user5","password":"user5"})
+db.userBeen.insert({"userId":"user5","password":"user5", "userType":"VIEWER"})
+
+
 
 db.createCollection("userAudits")
 
 db.userAudits.createIndex({"userId":1})
+
+
+
+db.createCollection("userVideos")
+
+db.userVideos.createIndex("videoId", { unique: true });
+
+db.userVideos.insert({
+  "videoId": "v001",
+  "sourceURL": "https://s3.ap-south-1.amazonaws.com/top100videos/v001.mp4",
+  "thumbnailURL": "https://s3.ap-south-1.amazonaws.com/top100videos/thumbnailv001.png",
+  "title": "title 001",
+  "description": "description v001",
+  "ownerUserId": "admin",
+  "isPublic": true
+})
 
 
 * session validity is of 30 Minutes
@@ -73,4 +93,4 @@ Steps to Deploy the project on AWS
 4. click create Environment.
 5. now you can select the recently generated .war file and upload it;
 
-currently the application is hosted on http://mandy.us-east-2.elasticbeanstalk.com/LoginSuccess.jsp
+currently the application is hosted on: ...
