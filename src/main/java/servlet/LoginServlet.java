@@ -54,6 +54,8 @@ public class LoginServlet extends HttpServlet {
                 userName.setMaxAge(30 * 60);
                 response.addCookie(userName);
                 response.addCookie(userType);
+                request.setAttribute("key1", "request attribute-LoginServlet.java");
+                response.setHeader("header1","resp header1-LoginServlet.java");
                 response.sendRedirect("Home.jsp");
             } else {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");

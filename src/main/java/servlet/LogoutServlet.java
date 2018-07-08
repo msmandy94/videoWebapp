@@ -44,6 +44,8 @@ public class LogoutServlet extends HttpServlet {
             if (session != null) {
                 session.invalidate();
             }
+            request.setAttribute("key1", "request attribute-LoginServlet.java");
+            response.setHeader("header1","resp header1-LogoutServlet.java");
             response.sendRedirect("login.jsp");
         } catch (Exception e){
             logger.error("error while logging out", e);

@@ -27,7 +27,7 @@ public class VideosServiceImpl implements VideosService {
 
         BasicDBObject bsonObject = new BasicDBObject();
         if (userType.equals(UserType.CONTRIBUTOR)) {
-            bsonObject.append("userId", userId);
+            bsonObject.append("ownerUserId", userId);
         } else if (userType.equals(UserType.CONTRIBUTOR)) {
             bsonObject.append("isPublic", true);
         }

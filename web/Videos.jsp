@@ -1,4 +1,5 @@
 <%@ page import="beens.VideoBean" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
          pageEncoding="US-ASCII" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,9 +22,11 @@
             if (cookie.getName().equals("userId")) userName = cookie.getValue();
         }
     }
+    ArrayList<VideoBean> videos =(ArrayList<VideoBean>) request.getAttribute("videos");
 %>
 <h3>Hi <%=userName %>, Here are all the videos</h3>
-<form action="LogoutServlet" method="post">
+<div> video1 = <%=videos.get(0).getDescription() %></div>
+<form action="" method="post">
     <input type="submit" value="see more">
 </form>
 <br>

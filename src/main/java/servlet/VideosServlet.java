@@ -5,7 +5,6 @@ import beens.UserType;
 import beens.VideoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import services.VideosService;
 import services.VideosServiceImpl;
 
 import javax.servlet.ServletException;
@@ -39,7 +38,6 @@ public class VideosServlet extends HttpServlet {
                 }
             }
         }
-        // invalidate the session if exists
         HttpSession session = req.getSession(false);
         UserBeen userBeen = new UserBeen();
         try {
@@ -63,9 +61,27 @@ public class VideosServlet extends HttpServlet {
         }
 
         ArrayList<VideoBean> videosForUser = videosService.getVideosForUser(userBeen);
+        req.setAttribute("key1", "request attribute-LoginServlet.java");
+        req.setAttribute("videos", videosForUser);
+        resp.setHeader("key1", "resp header1-VideoServlet.java");
         // todo: send videos in response.
+        //resp.sendRedirect("Videos.jsp");
+        req.getRequestDispatcher("videos.jsp").forward(req, resp);
 
-        resp.sendRedirect("Videos.jsp");
+    }
 
+    public static void main(String[] args) {
+        System.out.println(getValue());
+    }
+
+    private static int getValue() {
+        try {
+            return 1;
+        } catch (Exception e) {
+            System.out.println("catch");
+        } finally {
+            System.out.println("finally");
+        }
+        return 0;
     }
 }

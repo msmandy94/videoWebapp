@@ -73,9 +73,55 @@
             <version>1.7.0</version>
         </dependency>
 
+        <!--for AWS s3 SDK-->
+        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.11.285</version>
+        </dependency>
+
+        <!--for jersey server-->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.8</version>
+        </dependency>
+
+        <!--for jersey servlet container, otherwise it was showing error in web..xml  <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>-->
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet-core -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet-core</artifactId>
+            <version>2.26-b06</version>
+        </dependency>
+
+
+        <!--for jersey project quickstart archetype-->
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.archetypes/jersey-quickstart-webapp -->
+        <dependency>
+            <groupId>org.glassfish.jersey.archetypes</groupId>
+            <artifactId>jersey-quickstart-webapp</artifactId>
+            <version>2.25.1</version>
+        </dependency>
+
 
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!--from jersey archetype project-->
+                <groupId>org.glassfish.jersey</groupId>
+                <artifactId>jersey-bom</artifactId>
+                <version>${jersey.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
     <repositories>
         <!-- http://projects.spring.io/spring-data-mongodb/-->
         <repository>
@@ -86,7 +132,19 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>snapshot-repository.java.net</id>
+            <name>Java.net Snapshot Repository for Maven</name>
+            <url>https://maven.java.net/content/repositories/snapshots/</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
+
+
+    <properties>
+        <jersey.version>2.16</jersey.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>
 
